@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: checkme
+      POSTGRES_PASSWORD: qwerty
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    networks:
+      - checkme
+
+  app:
+    depends_on:
+      - db
+    build:
+      context: ./
+    environment:
+      DB_HOST: db
+      DB_NAME: checkme
+      DB_USER: checkme
+      DB_PASSWORD: qwerty
+    ports:
+      - "8080:8080"
+    networks:
+      - checkme
+
+volumes:
+  dbdata:
+
+networks:
+  checkme:
