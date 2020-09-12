@@ -5,7 +5,7 @@
 ### Через Docker
 `docker-compose up --build -d`
 ### Без докера
-Понадобиться PostgreSQL. Будем считать, что он установлен на localhost'е, БД называется checkme,
+Понадобится PostgreSQL. Будем считать, что он установлен на localhost'е, БД называется checkme,
 пользователь так же, а пользовательский пароль password
 
 ```shell script
