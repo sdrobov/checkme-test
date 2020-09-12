@@ -37,13 +37,13 @@ fun Routing.clinics() {
 
             call.respond(HttpStatusCode.NoContent)
         }
-        post("{id}/add-check-up") {
+        post("{id}/check-up") {
             val clinicId = call.parameters["id"]?.toInt() ?: return@post call.respond(HttpStatusCode.BadRequest)
             val addCheckUpData = call.receive<AddClinicCheckUpData>()
 
             Clinics.addCheckUp(clinicId, addCheckUpData)?.let { call.respond(it) }
         }
-        delete("{clinicId}/delete-check-up/{checkUpId}") {
+        delete("{clinicId}/check-up/{checkUpId}") {
             val clinicId = call.parameters["clinicId"]?.toInt() ?: return@delete call.respond(HttpStatusCode.BadRequest)
             val checkUpId = call.parameters["checkUpId"]?.toInt() ?: return@delete call.respond(HttpStatusCode.BadRequest)
 
