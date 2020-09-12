@@ -22,6 +22,8 @@ java -jar ./build/libs/checkme-test.jar
 ## API
 ### GET /clinics
 Возвращает список клиник
+### GET /clinics/1
+Возвращает клинику с id=1
 ### POST /clinics
 ```json
 {"name": "new clinic"}
@@ -43,6 +45,8 @@ java -jar ./build/libs/checkme-test.jar
 Удаляет из клиники услугу с id=1
 ### GET /check-ups
 Возвращает список услуг
+### GET /check-ups/1
+Возвращает услугу с id=1
 ### POST /check-ups
 ```json
 {"name": "new check up"}
