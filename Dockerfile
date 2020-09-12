@@ -1,19 +1,17 @@
 # build
-FROM openjdk:8-jdk-alpine
+FROM gradle:jdk8
 
 RUN mkdir /build
 
-COPY ./gradle            /build/gradle
 COPY ./resources         /build/resources
 COPY ./src               /build/src
 COPY ./build.gradle      /build/build.gradle
 COPY ./gradle.properties /build/gradle.properties
-COPY ./gradlew           /build/gradlew
 COPY ./settings.gradle   /build/settings.gradle
 
 WORKDIR /build
 
-RUN ./gradlew shadowJar
+RUN gradle shadowJar
 
 # app
 FROM openjdk:8-jre-alpine
@@ -32,3 +30,4 @@ WORKDIR /app
 EXPOSE 8080
 
 CMD ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-XX:InitialRAMFraction=2", "-XX:MinRAMFraction=2", "-XX:MaxRAMFraction=2", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "checkme-test.jar"]
+
